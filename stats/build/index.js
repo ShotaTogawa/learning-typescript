@@ -1,18 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var CsvFileReader_1 = require("./CsvFileReader");
-var MatchResult_1 = require("./MatchResult");
-var reader = new CsvFileReader_1.CsvFileReader('original.csv');
-reader.read();
-console.log(reader.data[0]);
-var manUnitedWins = 0;
-for (var _i = 0, _a = reader.data; _i < _a.length; _i++) {
-    var match = _a[_i];
-    if (match[1] === 'Man United' && match[5] === MatchResult_1.MatchResult.HomeWin) {
-        manUnitedWins++;
-    }
-    else if (match[2] === 'Man United' && match[5] === MatchResult_1.MatchResult.AwayWin) {
-        manUnitedWins++;
-    }
-}
-console.log(manUnitedWins + " games");
+var MatchReader_1 = require("./MatchReader");
+var ConsoleReports_1 = require("./reportsTargets/ConsoleReports");
+var WinsAnalysis_1 = require("./analyzers/WinsAnalysis");
+var Summary_1 = require("./Summary");
+// create an obj that satisfies the "Data Reader" interface
+var csvFileReader = new CsvFileReader_1.CsvFileReader('original.csv');
+// Create an instance of MatchReader and pass in something satisfying the DataReader interface
+var matchReader = new MatchReader_1.MatchReader(csvFileReader);
+matchReader.load();
+var consoleSummary = new Summary_1.Summary(new WinsAnalysis_1.WinsAnalysis('Man United'), new ConsoleReports_1.ConsoleReports());
+consoleSummary.buildAndPrintReport(matchReader.matches);
+var htmlSummary = Summary_1.Summary.winsAnalysisWithHtmlReport('Man United');
+htmlSummary.buildAndPrintReport(matchReader.matches);
