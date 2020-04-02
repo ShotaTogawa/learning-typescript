@@ -1,9 +1,7 @@
 import fs from 'fs';
 import { dateStringToDate } from './utils';
 import { MatchResult } from './MatchResult';
-
-// tuple
-type MatchData = [Date, string, string, number, number, MatchResult, string];
+import { MatchData } from './MatchData';
 
 export class CsvFileReaderBackup {
   data: MatchData[] = [];
