@@ -3,7 +3,6 @@ import { MatchReader } from './MatchReader';
 import { ConsoleReports } from './reportsTargets/ConsoleReports';
 import { WinsAnalysis } from './analyzers/WinsAnalysis';
 import { Summary } from './Summary';
-import { HtmlReport } from './reportsTargets/HtmlReport';
 
 // create an obj that satisfies the "Data Reader" interface
 const csvFileReader = new CsvFileReader('original.csv');
