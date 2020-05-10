@@ -15,14 +15,14 @@ let turths: boolean[] = [true, false];
 
 // classes
 
-class Car {}
+class Cart {}
 
-let car: Car = new Car();
+let cart: Cart = new Cart();
 
 // Object literal
 let point: { x: number; y: number } = {
   x: 10,
-  y: 20
+  y: 20,
 };
 
 // Function
